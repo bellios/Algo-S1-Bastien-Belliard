@@ -34,7 +34,7 @@ public class Wand {
         return "Your Wand : " +
                 "\ncore : " + core +
                 "\nwood : " + wood +
-                "\nsize : " + size +
+                "\nsize : " + size +" cm"+
                 "\nflexibility (10=flexible, 0=rigid) : " + flexibility;
     }
 }

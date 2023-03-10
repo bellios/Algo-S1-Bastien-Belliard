@@ -12,4 +12,9 @@ public class House {
         this.multPres = multPres;
         this.multPot = multPot;
     }
+
+    @Override
+    public String toString() {
+        return "Your house is "+name;
+    }
 }
