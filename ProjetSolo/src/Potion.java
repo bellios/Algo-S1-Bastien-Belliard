@@ -3,10 +3,12 @@ public class Potion {
     String description;
     float power;
     int yearOfCraft;
+    Type type;
 
-    public Potion(String name, String description, float power, int yearOfCraft) {
+    public Potion(String name, String description, Type type, float power, int yearOfCraft) {
         this.name = name;
         this.description = description;
+        this.type=type;
         this.power=power;
         this.yearOfCraft=yearOfCraft;
     }

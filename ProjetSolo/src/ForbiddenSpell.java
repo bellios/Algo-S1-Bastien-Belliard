@@ -1,5 +1,5 @@
 public class ForbiddenSpell extends AbstractSpell{
-    public ForbiddenSpell(String name, String description, SpellType type, int power) {
+    public ForbiddenSpell(String name, String description, Type type, int power) {
         super(name,description, type, power);
     }
     //Imperio take over mind

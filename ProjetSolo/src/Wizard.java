@@ -24,6 +24,10 @@ public class Wizard extends Character{
         this.year = 1;
     }
 
+    public int getYear() {
+        return year;
+    }
+
     public static House initHouse(){
         switch ((int)(Math.random()*4)){
             case 1:
@@ -38,8 +42,14 @@ public class Wizard extends Character{
         return new House("Gryffindor", 1,1,1.20F,1);
     }
     public void printInventoryPotion(){
+        System.out.println("This is the potions you currently have in your inventory : ");
         for(int iz=0;iz<=this.potion.length-1;iz++) {
             System.out.println(potion[iz].getName());
+        }
+    }
+    public void printKnowSpells(){
+        for(int i=0;i<=knowspell.size()-1;i++){
+            System.out.println(knowspell.get(i).toString());
         }
     }
     public boolean craftPotion(ArrayList<Potion> potions) {
@@ -62,4 +72,8 @@ public class Wizard extends Character{
         System.out.println("Inventory full");
         return false;
     }
+    public void addSpell(Spell spell){
+        this.knowspell.add(spell);
+    }
+
 }

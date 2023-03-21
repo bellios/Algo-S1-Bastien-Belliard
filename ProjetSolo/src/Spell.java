@@ -1,8 +1,12 @@
 public class Spell extends AbstractSpell{
     private int yearOfStudy;
-    public Spell(String name,String description, SpellType type, int power,int yearOfStudy) {
+    public Spell(String name,String description, Type type, int power,int yearOfStudy) {
         super(name,description, type, power);
         this.yearOfStudy=yearOfStudy;
+    }
+
+    public int getYearOfStudy() {
+        return yearOfStudy;
     }
 
     @Override
