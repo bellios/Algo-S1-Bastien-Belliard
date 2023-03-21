@@ -1,5 +1,6 @@
 public enum SpellType {
     ATTACK,
     DEFENSE,
-    OTHER
+    RESTRAIN,
+    SPECIAL
 }

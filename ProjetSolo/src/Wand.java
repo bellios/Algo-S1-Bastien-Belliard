@@ -7,8 +7,8 @@ public class Wand {
 
     public Wand() {
         //43 wood & 16 core, size between 22-35 cm
-        this.core = Core.values()[(int)(Math.random()*16)];
-        this.wood = Wood.values()[(int)(Math.random()*43)];
+        this.core = Core.values()[(int)(Math.random()*Core.values().length)];
+        this.wood = Wood.values()[(int)(Math.random()*Wood.values().length)];
         this.size = ((int)(Math.random()*13))+22;
         this.flexibility = (int)(Math.random()*10);
     }

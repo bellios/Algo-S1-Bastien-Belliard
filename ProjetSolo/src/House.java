@@ -17,4 +17,20 @@ public class House {
     public String toString() {
         return "Your house is "+name;
     }
+
+    public float getMultDeg() {
+        return multDeg;
+    }
+
+    public float getMultRes() {
+        return multRes;
+    }
+
+    public float getMultPres() {
+        return multPres;
+    }
+
+    public float getMultPot() {
+        return multPot;
+    }
 }
