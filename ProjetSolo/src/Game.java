@@ -6,41 +6,12 @@ public class Game {
     private ArrayList<Potion> potions;
     private ArrayList<Spell> spells;
     private ArrayList<ForbiddenSpell> forbiddenSpells;
+    private ArrayList<Boss> bosses;
+    private ArrayList<Enemy> enemies;
+    private ArrayList<EnemyLevel> levels;
     //=================================================================================================================
     //  Initialisation functions
     //=================================================================================================================
-    public ArrayList<Potion> initPotion(){
-        ArrayList<Potion> potions=new ArrayList<Potion>();
-        potions.add(new Potion("Cure for Boils","Regenerate a little of your health",Type.REGENERATE,1.25F,1));
-        potions.add(new Potion("Draught of Living Death","Your enemy have a little chance to fall asleep",Type.SLEEP,1.1F,1));
-        potions.add(new Potion("Confusing Concoction","Confuse your enemy for a short period", Type.RESTRAIN,2,3));
-        potions.add(new Potion("Undetectable Poisons","Poison your enemy", Type.POISON,3,3));
-        potions.add(new Potion("Wit-Sharpening Potion","Cure your confusion effect", Type.CURE,1,4));
-        potions.add(new Potion("Antidote","Cure poison effect", Type.CURE,1,4));
-        potions.add(new Potion("Strengthening Solution","Strengthen your attack", Type.BOOST,1.25F,5));
-        potions.add(new Potion("Invigoration Draught","Restore your health", Type.REGENERATE,1.5F,5));
-        return potions;
-    }
-    public ArrayList<Spell> initSpell(){
-        ArrayList<Spell> spells=new ArrayList<Spell>();
-        spells.add(new Spell("Windgardium leviosa","Levitate objects.",Type.SPECIAL,1,1));
-        spells.add(new Spell("Petrificus Totalus","Restrain the movement of your opponent.",Type.RESTRAIN,10,1));
-        spells.add(new Spell("Expelliarmus","Disarm your enemy.",Type.ATTACK,10,2));
-        spells.add(new Spell("Accio","Attract object.",Type.SPECIAL,1,2));
-        spells.add(new Spell("Expecto Patronum","Summon your patronum.",Type.DEFENSE,10,3));
-        spells.add(new Spell("Repulso","Expel object.",Type.ATTACK,20,4));
-        spells.add(new Spell("Protego","Attract object.",Type.DEFENSE,25,4));
-        spells.add(new Spell("Stupefy","Stun your enemy.",Type.RESTRAIN,50,5));
-        spells.add(new Spell("Sectumsempra","Lacerate your enemy.",Type.BLEEDING,5,6));
-        return spells;
-    }
-    public ArrayList<ForbiddenSpell> initForbiddenSpell(){
-        ArrayList<ForbiddenSpell> forbiddenSpells=new ArrayList<ForbiddenSpell>();
-        forbiddenSpells.add(new ForbiddenSpell("Imperio","Take over mind.",Type.SPECIAL,1));
-        forbiddenSpells.add(new ForbiddenSpell("Curcio","Torture.",Type.RESTRAIN, 100));
-        forbiddenSpells.add(new ForbiddenSpell("Avada Kevadra","Kill.",Type.ATTACK,1000));
-        return forbiddenSpells;
-    }
     public Wizard initPlayer () {
         System.out.println("What's your name ?");
         Scanner scanner = new Scanner(System.in);
@@ -57,8 +28,55 @@ public class Game {
             indexPet = scanner.nextInt();
         } while (indexPet <0||indexPet>=9);
         System.out.println("You choose a "+Pet.values()[indexPet]);
-        Wizard player = new Wizard(name,1,1,10,1,Pet.values()[indexPet]);
+        Wizard player = new Wizard(name,10,10,100,70,Pet.values()[indexPet]);
         return player;
+    }
+    public void initPotion(){
+        this.potions.add(new Potion("Cure for Boils","Regenerate a little of your health",Type.REGENERATE,1.25F,1));
+        this.potions.add(new Potion("Draught of Living Death","Your enemy have a little chance to fall asleep",Type.SLEEP,1.1F,1));
+        this.potions.add(new Potion("Confusing Concoction","Confuse your enemy for a short period", Type.RESTRAIN,2,3));
+        this.potions.add(new Potion("Undetectable Poisons","Poison your enemy", Type.POISON,3,3));
+        this.potions.add(new Potion("Wit-Sharpening Potion","Cure your confusion effect", Type.CURE,1,4));
+        this.potions.add(new Potion("Antidote","Cure poison effect", Type.CURE,1,4));
+        this.potions.add(new Potion("Strengthening Solution","Strengthen your attack", Type.BOOST,1.25F,5));
+        this.potions.add(new Potion("Invigoration Draught","Restore your health", Type.REGENERATE,1.5F,5));
+    }
+    public void initSpell(){
+        this.spells.add(new Spell("Windgardium leviosa","Levitate objects.",Type.SPECIAL,1,1));
+        this.spells.add(new Spell("Petrificus Totalus","Restrain the movement of your opponent.",Type.RESTRAIN,10,1));
+        this.spells.add(new Spell("Expelliarmus","Disarm your enemy.",Type.ATTACK,10,2));
+        this.spells.add(new Spell("Accio","Attract object.",Type.SPECIAL,1,2));
+        this.spells.add(new Spell("Expecto Patronum","Summon your patronum.",Type.DEFENSE,10,3));
+        this.spells.add(new Spell("Repulso","Expel object.",Type.ATTACK,20,4));
+        this.spells.add(new Spell("Protego","Attract object.",Type.DEFENSE,25,4));
+        this.spells.add(new Spell("Stupefy","Stun your enemy.",Type.RESTRAIN,50,5));
+        this.spells.add(new Spell("Sectumsempra","Lacerate your enemy.",Type.BLEEDING,5,6));
+    }
+    public void initForbiddenSpell(){
+        this.forbiddenSpells.add(new ForbiddenSpell("Imperio","Take over mind.",Type.SPECIAL,1));
+        this.forbiddenSpells.add(new ForbiddenSpell("Curcio","Torture.",Type.RESTRAIN, 100));
+        this.forbiddenSpells.add(new ForbiddenSpell("Avada Kevadra","Kill.",Type.ATTACK,1000));
+    }
+    public void initBoss(){
+        this.bosses.add(new Boss("Basilic",50,10,1000,50));
+        this.bosses.add(new Boss("Voldemort",50,10,1000,50));
+        this.bosses.add(new Boss("Peter Pettigrow",50,10,1000,50));
+        this.bosses.add(new Boss("Dolores Ombrage",50,10,1000,50));
+        this.bosses.add(new Boss("Bellatrix Lestrange",50,10,1000,50));
+    }
+    public void initEnemy(){
+        this.enemies.add(new Enemy("Troll",50,10,1000,50));
+        this.enemies.add(new Enemy("Dementor",50,10,1000,50));
+        this.enemies.add(new Enemy("Death Eaters",50,10,1000,50));
+    }
+    public void initLevel(){
+        this.levels.add(new EnemyLevel(new Boss[]{}, new Enemy[]{this.enemies.get(0)}));
+        this.levels.add(new EnemyLevel(new Boss[]{this.bosses.get(0)}, new Enemy[]{}));
+        this.levels.add(new EnemyLevel(new Boss[]{}, new Enemy[]{this.enemies.get(1),this.enemies.get(1),this.enemies.get(1)}));
+        this.levels.add(new EnemyLevel(new Boss[]{this.bosses.get(1),this.bosses.get(2)}, new Enemy[]{}));
+        this.levels.add(new EnemyLevel(new Boss[]{this.bosses.get(3)}, new Enemy[]{}));
+        this.levels.add(new EnemyLevel(new Boss[]{}, new Enemy[]{this.enemies.get(2),this.enemies.get(2),this.enemies.get(2)}));
+        this.levels.add(new EnemyLevel(new Boss[]{this.bosses.get(1),this.bosses.get(4)}, new Enemy[]{}));
     }
     //=================================================================================================================
     //  General method
@@ -68,6 +86,29 @@ public class Game {
             if(spells.get(i).getYearOfStudy()==player.getYear())
                 player.addSpell(spells.get(i));
         }
+    }
+    public void battle(){
+        EnemyLevel mylevel=this.levels.get(this.player.getYear()-1);
+        do{
+            Scanner scanner = new Scanner(System.in);
+            int index;
+            do {
+                System.out.println("Choose your moove:\n1 : spell\n2 : Potion\n3 : Item");
+                index = scanner.nextInt();
+            } while (index <1||index>3);
+            switch(index){
+                case 1:
+                    this.player.chooseSpell();
+                    break;
+                case 2:
+                    this.player.choosePotion();
+                    break;
+                case 3:
+                    //this.player.chooseItem();
+                    break;
+            }
+
+        }while(this.player.getHp()>0||mylevel.areDead());//voir pour les hp des enemies et des boss
     }
     //=================================================================================================================
     //  Course of the years
@@ -81,7 +122,7 @@ public class Game {
             player.craftPotion(potions);
         }
         player.printInventoryPotion();
-        //kombat
+        battle();
         //increase year
     }
     public void secondYear(){
@@ -108,12 +149,20 @@ public class Game {
         //kombat
         //increase year
     }
+    //=================================================================================================================
+    //  Main
+    //=================================================================================================================
     public void startGame(){
+        // Initialization
         System.out.println("Welcome young wizard to the beautiful word of harih potha in to the meme world");
         this.player =initPlayer();
-        this.potions=initPotion();
-        this.spells=initSpell();
-        this.forbiddenSpells=initForbiddenSpell();
+        initPotion();
+        initSpell();
+        initForbiddenSpell();
+        initBoss();
+        initEnemy();
+        initLevel();
+        //Start of each year
         firstYear();
     }
 }

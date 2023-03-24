@@ -20,4 +20,18 @@ public class Spell extends AbstractSpell{
     //5 year Stupefix
     //6 year Sectumsempra
 
+    public void use (){
+        switch (this.type){
+            case ATTACK :
+                break;
+            case DEFENSE :
+                break;
+            case RESTRAIN :
+                break;
+            case BLEEDING :
+                break;
+            case SPECIAL :
+                break;
+        }
+    }
 }

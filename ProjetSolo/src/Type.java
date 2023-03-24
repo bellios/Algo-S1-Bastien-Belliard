@@ -8,6 +8,7 @@ public enum Type {
     BOOST,
     REGENERATE,
     BLEEDING,
-    SPECIAL
+    SPECIAL,
+    NONE
 
 }

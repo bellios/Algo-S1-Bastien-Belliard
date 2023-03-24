@@ -13,7 +13,7 @@ public class Wizard extends Character{
         super(name, attack, defense, health, precision);
         Wand wand=new Wand();
         System.out.println(wand.toString());
-        Potion pot=new Potion("empty","",0,0);
+        Potion pot=new Potion("empty","",Type.NONE,0,0);
         House house=initHouse();
         System.out.println(house.toString());
         this.pet = pet;
@@ -23,10 +23,18 @@ public class Wizard extends Character{
         this.potion = new Potion[]{pot,pot,pot,pot,pot,pot,pot,pot,pot,pot};
         this.year = 1;
     }
-
+    public void changeHP(int i){
+        this.hp+=i;
+    }
     public int getYear() {
         return year;
     }
+    public int getHp() {
+        return hp;
+    }
+    //=================================================================================================================
+    //  Initialization
+    //=================================================================================================================
 
     public static House initHouse(){
         switch ((int)(Math.random()*4)){
@@ -41,17 +49,23 @@ public class Wizard extends Character{
         }
         return new House("Gryffindor", 1,1,1.20F,1);
     }
+    //=================================================================================================================
+    //  Print inventories
+    //=================================================================================================================
     public void printInventoryPotion(){
         System.out.println("This is the potions you currently have in your inventory : ");
         for(int iz=0;iz<=this.potion.length-1;iz++) {
-            System.out.println(potion[iz].getName());
+            System.out.println(iz+" : "+potion[iz].getName());
         }
     }
     public void printKnowSpells(){
         for(int i=0;i<=knowspell.size()-1;i++){
-            System.out.println(knowspell.get(i).toString());
+            System.out.println(i+" : "+knowspell.get(i).toString());
         }
     }
+    //=================================================================================================================
+    //  Add item in inventories
+    //=================================================================================================================
     public boolean craftPotion(ArrayList<Potion> potions) {
         for (int iz = 0; iz <= this.potion.length - 1; iz++) {
             if (this.potion[iz].getName() == "empty") {
@@ -75,5 +89,26 @@ public class Wizard extends Character{
     public void addSpell(Spell spell){
         this.knowspell.add(spell);
     }
-
+    //=================================================================================================================
+    //  Choose a item
+    //=================================================================================================================
+    public void chooseSpell(){
+        int index;
+        Scanner scanner = new Scanner(System.in);
+        do {
+            System.out.println("Enter the number of the spell, you want to use");
+            index = scanner.nextInt();
+        } while (index <0||index>=this.knowspell.size()-1);
+        this.knowspell.get(index).use();
+    }
+    public void choosePotion(){
+        int index;
+        Scanner scanner = new Scanner(System.in);
+        do {
+            System.out.println("Enter the number of the potion, you want to use");
+            index = scanner.nextInt();
+        } while (index <0||index>=this.potion.length-1);
+        this.potion[index].use();
+        this.potion[index]=new Potion("empty","",Type.NONE,0,0);
+    }
 }

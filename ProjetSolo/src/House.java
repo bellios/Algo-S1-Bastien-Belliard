@@ -1,14 +1,14 @@
 public class House {
     private String name;
     private float multDeg;
-    private float multRes;
+    private float multDef;
     private float multPres;
     private float multPot;
 
-    public House(String name, float multPot, float multDeg, float multRes, float multPres) {
+    public House(String name, float multPot, float multDeg, float multDef, float multPres) {
         this.name = name;
         this.multDeg = multDeg;
-        this.multRes = multRes;
+        this.multDef = multDef;
         this.multPres = multPres;
         this.multPot = multPot;
     }
@@ -22,8 +22,8 @@ public class House {
         return multDeg;
     }
 
-    public float getMultRes() {
-        return multRes;
+    public float getMultDef() {
+        return multDef;
     }
 
     public float getMultPres() {

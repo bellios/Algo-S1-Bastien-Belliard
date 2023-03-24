@@ -4,16 +4,19 @@ public abstract class Character {
     protected String name;
     protected int attack;
     protected int defense;
-    protected int health;
+    protected int maxHP;
+    protected int hp;
     protected int precision;
     //add stat
+
 
 
     public Character(String name, int attack, int defense, int health, int precision) {
         this.name = name;
         this.attack = attack;
         this.defense = defense;
-        this.health = health;
+        this.hp = health;
+        this.maxHP = health;
         this.precision = precision;
     }
 
@@ -24,4 +27,8 @@ public abstract class Character {
     public static void defend() {
 
     }
+    public int getHp() {
+        return hp;
+    }
+
 }

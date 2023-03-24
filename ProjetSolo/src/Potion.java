@@ -22,4 +22,21 @@ public class Potion {
     public String getName() {
         return name;
     }
+
+    public void use (){
+        switch (this.type){
+            case REGENERATE :
+                break;
+            case BOOST :
+                break;
+            case RESTRAIN :
+                break;
+            case CURE :
+                break;
+            case POISON :
+                break;
+            case SLEEP :
+                break;
+        }
+    }
 }
