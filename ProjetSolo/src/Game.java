@@ -3,12 +3,12 @@ import java.util.Scanner;
 
 public class Game {
     private Wizard player;
-    private ArrayList<Potion> potions;
-    private ArrayList<Spell> spells;
-    private ArrayList<ForbiddenSpell> forbiddenSpells;
-    private ArrayList<Boss> bosses;
-    private ArrayList<Enemy> enemies;
-    private ArrayList<EnemyLevel> levels;
+    private ArrayList<Potion> potions=new ArrayList<>();
+    private ArrayList<Spell> spells=new ArrayList<>();
+    private ArrayList<ForbiddenSpell> forbiddenSpells=new ArrayList<>();
+    private ArrayList<Boss> bosses=new ArrayList<>();
+    private ArrayList<Enemy> enemies=new ArrayList<>();
+    private ArrayList<EnemyLevel> levels=new ArrayList<>();
     //=================================================================================================================
     //  Initialisation functions
     //=================================================================================================================
@@ -32,14 +32,13 @@ public class Game {
         return player;
     }
     public void initPotion(){
-        this.potions.add(new Potion("Cure for Boils","Regenerate a little of your health",Type.REGENERATE,1.25F,1));
-        this.potions.add(new Potion("Draught of Living Death","Your enemy have a little chance to fall asleep",Type.SLEEP,1.1F,1));
-        this.potions.add(new Potion("Confusing Concoction","Confuse your enemy for a short period", Type.RESTRAIN,2,3));
-        this.potions.add(new Potion("Undetectable Poisons","Poison your enemy", Type.POISON,3,3));
-        this.potions.add(new Potion("Wit-Sharpening Potion","Cure your confusion effect", Type.CURE,1,4));
-        this.potions.add(new Potion("Antidote","Cure poison effect", Type.CURE,1,4));
-        this.potions.add(new Potion("Strengthening Solution","Strengthen your attack", Type.BOOST,1.25F,5));
-        this.potions.add(new Potion("Invigoration Draught","Restore your health", Type.REGENERATE,1.5F,5));
+        this.potions.add(new Potion("Cure for Boils","Regenerate a little of your health",1,new Effect(Type.REGENERATE,1.25F,1)));
+        this.potions.add(new Potion("Draught of Living Death","Your enemy have a little chance to fall asleep",1,new Effect(Type.SLEEP,1F,3)));
+        this.potions.add(new Potion("Confusing Concoction","Confuse your enemy for a short period", 3,new Effect(Type.RESTRAIN,1F,2)));
+        this.potions.add(new Potion("Undetectable Poisons","Poison your enemy",3,new Effect(Type.POISON,10F,3)));
+        this.potions.add(new Potion("Antidote","Cure all effect", 4,new Effect(Type.CURE,1F,1)));
+        this.potions.add(new Potion("Strengthening Solution","Strengthen your attack",5,new Effect( Type.BOOST,1.25F,3)));
+        this.potions.add(new Potion("Invigoration Draught","Restore your health", 5,new Effect(Type.REGENERATE,1.5F,1)));
     }
     public void initSpell(){
         this.spells.add(new Spell("Windgardium leviosa","Levitate objects.",Type.SPECIAL,1,1));
@@ -88,7 +87,7 @@ public class Game {
         }
     }
     public void battle(){
-        EnemyLevel mylevel=this.levels.get(this.player.getYear()-1);
+        EnemyLevel mylevel=new EnemyLevel(this.levels.get(this.player.getYear()-1));
         do{
             Scanner scanner = new Scanner(System.in);
             int index;
@@ -96,25 +95,78 @@ public class Game {
                 System.out.println("Choose your moove:\n1 : spell\n2 : Potion\n3 : Item");
                 index = scanner.nextInt();
             } while (index <1||index>3);
+            Character target = mylevel.chooseMob();
             switch(index){
                 case 1:
-                    this.player.chooseSpell();
+                    spellUse(this.player.chooseSpell(), target);
                     break;
                 case 2:
-                    this.player.choosePotion();
+                    potionUse(this.player.choosePotion(), target);
                     break;
                 case 3:
                     //this.player.chooseItem();
                     break;
             }
 
-        }while(this.player.getHp()>0||mylevel.areDead());//voir pour les hp des enemies et des boss
+            //partie mobs
+            //decrease turn effect
+        }while(this.player.getHp()>0||mylevel.areDead());
+        //return bool
+    }
+    public void spellUse(Spell choosenSpell, Character target){
+        if(Math.random()*100>=this.player.getPrecision()*this.player.getHouse().getMultPres())
+            System.out.println("AH AH, you miss your spell");
+        else {
+            switch (choosenSpell.getType()) {
+                case ATTACK:
+                    player.attack(target, choosenSpell.getPower());
+                    break;
+                case DEFENSE:
+                    player.effect.add(new Effect(Type.DEFENSE, 2F, 1));
+                    break;
+                case RESTRAIN:
+
+                    break;
+                case BLEEDING:
+
+                    break;
+                case SPECIAL:
+
+                    break;
+            }
+        }
+    }
+    public void potionUse(Potion choosenPotion,Character targetMob){
+        if(Math.random()*100>=this.player.getPrecision()*this.player.getHouse().getMultPres()+10)
+            System.out.println("AH AH, you miss your potion");
+        else {
+            switch (choosenPotion.getType()) {
+                case REGENERATE:
+                    this.player.heal((int)(this.player.getMaxHP()*choosenPotion.getEffect().getPower()*this.player.getHouse().getMultPot()));
+                    break;
+                case BOOST:
+                    targetMob.effect.add(new Effect(choosenPotion.getEffect()));
+                    break;
+                case RESTRAIN:
+                    targetMob.effect.add(new Effect(choosenPotion.getEffect()));
+                    break;
+                case CURE:
+                    this.player.effect.clear();
+                    break;
+                case POISON:
+                    targetMob.effect.add(new Effect(choosenPotion.getEffect()));
+                    break;
+                case SLEEP:
+                    targetMob.effect.add(new Effect(choosenPotion.getEffect()));
+                    break;
+            }
+        }
     }
     //=================================================================================================================
     //  Course of the years
     //=================================================================================================================
     public void firstYear(){
-        System.out.println("Your are in your first year, thanks to your wonderful teacher you have learn two new spell");
+        System.out.println("Your are in your first year, thanks to your wonderful teacher you have learn two new spells");
         addSpellPerYear();
         player.printKnowSpells();
         System.out.println("\n In this year your will have the possibility to craft 4 potions");
@@ -122,6 +174,7 @@ public class Game {
             player.craftPotion(potions);
         }
         player.printInventoryPotion();
+        System.out.println("In the end of your first year after taking a shit you see a big troll");
         battle();
         //increase year
     }
@@ -154,7 +207,7 @@ public class Game {
     //=================================================================================================================
     public void startGame(){
         // Initialization
-        System.out.println("Welcome young wizard to the beautiful word of harih potha in to the meme world");
+        System.out.println("Welcome young wizard to the beautiful word of harih potah in to the meme world");
         this.player =initPlayer();
         initPotion();
         initSpell();

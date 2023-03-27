@@ -1,16 +1,14 @@
 public class Potion {
     String name;
     String description;
-    float power;
     int yearOfCraft;
-    Type type;
+    Effect effect;
 
-    public Potion(String name, String description, Type type, float power, int yearOfCraft) {
+    public Potion(String name, String description, int yearOfCraft, Effect effect) {
         this.name = name;
         this.description = description;
-        this.type=type;
-        this.power=power;
-        this.yearOfCraft=yearOfCraft;
+        this.yearOfCraft = yearOfCraft;
+        this.effect = effect;
     }
 
     public int getYearOfCraft() {
@@ -23,20 +21,11 @@ public class Potion {
         return name;
     }
 
-    public void use (){
-        switch (this.type){
-            case REGENERATE :
-                break;
-            case BOOST :
-                break;
-            case RESTRAIN :
-                break;
-            case CURE :
-                break;
-            case POISON :
-                break;
-            case SLEEP :
-                break;
-        }
+    public Type getType() {
+        return this.effect.getType();
+    }
+
+    public Effect getEffect() {
+        return effect;
     }
 }

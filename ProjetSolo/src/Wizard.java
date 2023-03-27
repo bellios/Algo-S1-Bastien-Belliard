@@ -13,7 +13,7 @@ public class Wizard extends Character{
         super(name, attack, defense, health, precision);
         Wand wand=new Wand();
         System.out.println(wand.toString());
-        Potion pot=new Potion("empty","",Type.NONE,0,0);
+        Potion pot=new Potion("empty","",0,new Effect(Type.NONE,0F,0));
         House house=initHouse();
         System.out.println(house.toString());
         this.pet = pet;
@@ -68,7 +68,7 @@ public class Wizard extends Character{
     //=================================================================================================================
     public boolean craftPotion(ArrayList<Potion> potions) {
         for (int iz = 0; iz <= this.potion.length - 1; iz++) {
-            if (this.potion[iz].getName() == "empty") {
+            if (this.potion[iz].getType() == Type.NONE) {
                 for(int i=0;i<=potions.size()-1;i++){
                     if(potions.get(i).getYearOfCraft()>this.year) break;
                     System.out.println(i+" : "+potions.get(i).toString());
@@ -92,23 +92,39 @@ public class Wizard extends Character{
     //=================================================================================================================
     //  Choose a item
     //=================================================================================================================
-    public void chooseSpell(){
+    public Spell chooseSpell(){
         int index;
         Scanner scanner = new Scanner(System.in);
         do {
             System.out.println("Enter the number of the spell, you want to use");
             index = scanner.nextInt();
         } while (index <0||index>=this.knowspell.size()-1);
-        this.knowspell.get(index).use();
+        return this.knowspell.get(index);
     }
-    public void choosePotion(){
+    public Potion choosePotion(){
         int index;
         Scanner scanner = new Scanner(System.in);
         do {
             System.out.println("Enter the number of the potion, you want to use");
             index = scanner.nextInt();
-        } while (index <0||index>=this.potion.length-1);
-        this.potion[index].use();
-        this.potion[index]=new Potion("empty","",Type.NONE,0,0);
+        } while (index <0||index>=this.potion.length-1||this.potion[index].getType()==Type.NONE);
+        Potion choice =this.potion[index];
+        this.potion[index]=new Potion("empty","",0,new Effect(Type.NONE,0F,0));
+        return choice;
     }
+
+    @Override
+    public void attack(Character character, int power) {
+        int hpLost=(int)((power+this.attack)*this.house.getMultDeg()-character.getDefense());
+        System.out.println(character.getName()+" has lost "+hpLost+" HP");
+        character.setHp(character.getHp()-hpLost);
+    }
+
+    public House getHouse() {
+        return house;
+    }
+    public void heal (int i){
+        this.hp+=i;
+    }
+
 }

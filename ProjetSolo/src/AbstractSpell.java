@@ -10,4 +10,12 @@ public abstract class AbstractSpell {
         this.type = type;
         this.power = power;
     }
+
+    public Type getType() {
+        return type;
+    }
+
+    public int getPower() {
+        return power;
+    }
 }

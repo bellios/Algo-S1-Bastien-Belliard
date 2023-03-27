@@ -13,6 +13,7 @@ public class Spell extends AbstractSpell{
     public String toString() {
         return  name + " : "+ description + " This " + type+" type spell is learned in the " + yearOfStudy+" year";
     }
+
     //1 year Windgardium, saucisson
     //2 year expelliarmus, Accio
     //3 year Expectro pratronum
@@ -20,18 +21,4 @@ public class Spell extends AbstractSpell{
     //5 year Stupefix
     //6 year Sectumsempra
 
-    public void use (){
-        switch (this.type){
-            case ATTACK :
-                break;
-            case DEFENSE :
-                break;
-            case RESTRAIN :
-                break;
-            case BLEEDING :
-                break;
-            case SPECIAL :
-                break;
-        }
-    }
 }
