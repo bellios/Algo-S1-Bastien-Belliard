@@ -6,7 +6,9 @@ public class Main {
         Game game=new Game();
         game.startGame();
 
-        //Avant baston période de cours, le pélo peux craft 6 potion et apprendre 2 sort en plus de ceux appris en cours
-        // Pour les combat il y auras sort, potion, item
+        // A faire
+        // Boos = sorcier donc sort et potion à changer
+        // ajouter les items
+        // Faire les cas spéciaux de niveaux
     }
 }

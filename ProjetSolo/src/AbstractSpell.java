@@ -15,6 +15,10 @@ public abstract class AbstractSpell {
         return type;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public int getPower() {
         return power;
     }

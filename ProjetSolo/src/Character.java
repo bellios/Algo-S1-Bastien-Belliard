@@ -18,10 +18,15 @@ public abstract class Character {
         this.hp = health;
         this.maxHP = health;
         this.precision = precision;
+        this.effect=new ArrayList<>();
     }
 
-    public void attack(Character character, int power){
+    public int getAttack() {
+        return attack;
+    }
 
+    public ArrayList<Effect> getEffect() {
+        return effect;
     }
 
     public static void defend(int power) {
@@ -55,4 +60,7 @@ public abstract class Character {
     public int getMaxHP() {
         return maxHP;
     }
+
+
+    public abstract void attack(Character character, int power);
 }

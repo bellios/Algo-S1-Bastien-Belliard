@@ -3,4 +3,8 @@ public class Enemy extends AbstractEnemy{
         super(name, attack, defense, health, precision);
     }
 
+
+    public Enemy(Enemy enemy) {
+        super(enemy.getName(),enemy.getAttack(), enemy.getDefense(), enemy.getMaxHP(), enemy.getPrecision());
+    }
 }

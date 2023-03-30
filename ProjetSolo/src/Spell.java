@@ -9,6 +9,7 @@ public class Spell extends AbstractSpell{
         return yearOfStudy;
     }
 
+
     @Override
     public String toString() {
         return  name + " : "+ description + " This " + type+" type spell is learned in the " + yearOfStudy+" year";
