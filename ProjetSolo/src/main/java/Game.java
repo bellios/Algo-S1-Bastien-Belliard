@@ -182,15 +182,55 @@ public class Game {
                 i++;
         return i;
     }
-    public boolean year(int spell, int potion){
-        System.out.println("This year have learned "+spell+" spell");
+    public void menuOfActions(int action){
+        do {
+            System.out.println("\nActions : \n1 : Print know spell \n2 : Print potion inventory \n3 : Print item inventory");
+            System.out.println("4 : Go to sleep in dormitory (1pt)\n5 : Craft potion (1pt)\n6 : learn new spell (1pt) WIP");
+            System.out.println("7 : Shop (1pt) WIP\n8 : Go gather ingredient (1pt) WIP");
+            int index;
+            Scanner scanner = new Scanner(System.in);
+            do {
+                System.out.println("Enter the number of the action you want to make");
+                index = scanner.nextInt();
+            } while (index <1||index>6);
+            switch (index){
+                case 1:
+                    this.player.printKnowSpells();
+                    break;
+                case 2:
+                    this.player.printInventoryPotion();
+                    break;
+                case 3:
+                    this.player.printInventoryItem();
+                    break;
+                case 4:
+                    System.out.println("You go to sleep to regenerate your HP");
+                    this.player.heal(this.player.getMaxHP());
+                    action--;
+                    break;
+                case 5:
+                    this.player.craftPotion(potions);
+                    action--;
+                    break;
+                case 6,7,8:
+                    //this.player.learnSpell(Learningspells);
+                    //this.player.shop(items);
+                    //this.player.gatherIngredient(ingredients);
+                    System.out.println("WIP, currently not available");
+                    break;
+            }
+        }while (action>0);
+    }
+    public boolean year(int spell, int action){
+        System.out.println("This year during your obligatory course you have learned "+spell+" spell");
         addSpellPerYear();
         player.printKnowSpells();
-        System.out.println("\n In this year your will have the possibility to craft "+potion+" potions");
-        for(int i=0;i<potion;i++){
+        System.out.println("\n In this year your will have "+action+" point");
+        /*for(int i=0;i<potion;i++){
             player.craftPotion(potions);
         }
-        player.printInventoryPotion();
+        player.printInventoryPotion();*/
+        menuOfActions(action);
         this.player.impYear();
         return battle();
     }
@@ -208,6 +248,7 @@ public class Game {
         initEnemy();
         initLevel();
         //Start of each year
+        System.out.println("Each year you will be able to make a certain number of action.\n this action will permit you to craft potion learn special spell or regenerate yourself");
         for(int i=0;i<7;i++){
             System.out.println(i+1+" year");
             if(!year(getNumSpellPerYear(),2+i)){
