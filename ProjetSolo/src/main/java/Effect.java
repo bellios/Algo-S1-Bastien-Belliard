@@ -28,4 +28,5 @@ public class Effect {
     public int getTurn() {
         return turn;
     }
+
 }

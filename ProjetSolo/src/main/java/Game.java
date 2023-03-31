@@ -32,8 +32,8 @@ public class Game {
     }
     public void initPotion(){
         this.potions.add(new Potion("Cure for Boils","Regenerate a little of your health",1,new Effect(Type.REGENERATE,1.25F,0)));
-        this.potions.add(new Potion("Draught of Living Death","Your enemy have a little chance to fall asleep",1,new Effect(Type.SLEEP,1F,3)));
-        this.potions.add(new Potion("Confusing Concoction","Confuse your enemy for a short period", 3,new Effect(Type.RESTRAIN,1F,2)));
+        this.potions.add(new Potion("Draught of Living Death","Your enemy have a chance to fall asleep",1,new Effect(Type.SLEEP,1F,2)));
+        this.potions.add(new Potion("Confusing Concoction","Confuse your enemy for a short period", 3,new Effect(Type.RESTRAIN,5F,3)));
         this.potions.add(new Potion("Undetectable Poisons","Poison your enemy",3,new Effect(Type.POISON,10F,3)));
         this.potions.add(new Potion("Antidote","Cure all effect", 4,new Effect(Type.CURE,1F,0)));
         this.potions.add(new Potion("Strengthening Solution","Strengthen your attack",5,new Effect( Type.BOOST,1.25F,3)));
@@ -77,14 +77,9 @@ public class Game {
         this.levels.add(new EnemyLevel(new ArrayList<>(Arrays.asList(new Boss(this.bosses.get(1)),new Boss(this.bosses.get(4))))));
     }
     //=================================================================================================================
-    //  General method
+    //  Battle method
     //=================================================================================================================
-    public void addSpellPerYear(){
-        for(int i=0;i<=spells.size()-1;i++){
-            if(spells.get(i).getYearOfStudy()==player.getYear())
-                player.addSpell(spells.get(i));
-        }
-    }
+
     public boolean battle(){
         EnemyLevel mylevel=new EnemyLevel(this.levels.get(this.player.getYear()-2));
         do{
@@ -106,11 +101,12 @@ public class Game {
                     //this.player.chooseItem();
                     break;
             }
-            //Verification of spécial condition
+            //Verification of special condition
             if(!mylevel.areDead()){
                 mylevel.mobTurn(this.player);
             }
-            //decrease turn effect, and effect per turn (poison and bleed)
+            mylevel.decreaseTimeEffectsMob();
+            player.decreaseTimeEffects();
             System.out.println("You have : "+this.player.getHp()+"/"+this.player.getMaxHP()+" HP");
         }while(this.player.getHp()>0&&!mylevel.areDead());
         if (mylevel.areDead()) {
@@ -163,38 +159,25 @@ public class Game {
     //=================================================================================================================
     //  Course of the years
     //=================================================================================================================
-    public boolean firstYear(){
-        System.out.println("Your are in your first year, thanks to your wonderful teacher you have learn two new spells");
-        addSpellPerYear();
-        player.printKnowSpells();
-        System.out.println("\n In this year your will have the possibility to craft 4 potions");
-        for(int i=0;i<4;i++){
-            player.craftPotion(potions);
+    public void addSpellPerYear(){
+        for(int i=0;i<=spells.size()-1;i++){
+            if(spells.get(i).getYearOfStudy()==player.getYear())
+                player.addSpell(spells.get(i));
         }
-        player.printInventoryPotion();
-        System.out.println("In the end of your first year after taking a shit you see a big troll");
-        this.player.impYear();
-        return battle();
-
     }
-    public boolean secondYear(){
-        System.out.println("Wow you have made to the second year, like last year you have learn new spells");
+    public int getNumSpellPerYear(){
+        int i=0;
+        for(int y=0;y<this.spells.size();y++)
+            if(this.spells.get(y).getYearOfStudy()==this.player.getYear())
+                i++;
+        return i;
+    }
+    public boolean year(int spell, int potion){
+        System.out.println("This year have learned "+spell+" spell");
         addSpellPerYear();
         player.printKnowSpells();
-        System.out.println("\n In this year your will have the possibility to craft 5 potions, but no new potions");
-        for(int i=0;i<5;i++){
-            player.craftPotion(potions);
-        }
-        player.printInventoryPotion();
-        this.player.impYear();
-        return battle();
-    }
-    public boolean thirdYear(){
-        System.out.println("This year you have learned only one new spell");
-        addSpellPerYear();
-        player.printKnowSpells();
-        System.out.println("\n In this year your will have the possibility to craft 3 potions");
-        for(int i=0;i<3;i++){
+        System.out.println("\n In this year your will have the possibility to craft "+potion+" potions");
+        for(int i=0;i<potion;i++){
             player.craftPotion(potions);
         }
         player.printInventoryPotion();
@@ -215,12 +198,11 @@ public class Game {
         initEnemy();
         initLevel();
         //Start of each year
-        if(!firstYear()){
-            System.out.println("game over");
-        } else if (!secondYear()) {
-            System.out.println("game over");
-        }else if (!thirdYear()) {
-            System.out.println("game over");
+        for(int i=0;i<7;i++){
+            System.out.println(i+1+" year");
+            if(!year(getNumSpellPerYear(),2+i)){
+                System.out.println("game over");
+            }
         }
 
     }

@@ -128,20 +128,32 @@ public class Wizard extends Character{
         do {
             System.out.println("You can add "+point+" point to your current stat");
             System.out.println("1 : HP, current maxHP (1pt = 5HP) :"+this.maxHP+"\n2 : Strength, current STR (1pt = 2 STR) :"+this.attack);
+            System.out.println("3 : Defense, current DEF (1pt = 5DEF) :"+this.defense+"\n4 : Precision, current PRES (1pt = 2 PRES) :"+this.precision);
             do {
                 System.out.println("Enter the number of the stat you want to upgrade");
                 index1 = scanner.nextInt();
-            } while (index1<1||index1>2);
+            } while (index1<1||index1>4);
             do {
                 System.out.println("How many point do you want to invest ?");
                 index2 = scanner.nextInt();
             } while (index2<=0||index2>point);
-            if(index1==1){
-                this.maxHP+=index2*5;
-                point-=index2;
-            }else {
-                this.attack+=index2*2;
-                point-=index2;
+            switch (index1){
+                case 1:
+                    this.maxHP+=index2*5;
+                    point-=index2;
+                    break;
+                case 2:
+                    this.attack+=index2*2;
+                    point-=index2;
+                    break;
+                case 3:
+                    this.defense+=index2*5;
+                    point-=index2;
+                    break;
+                case 4:
+                    this.precision+=index2*2;
+                    point-=index2;
+                    break;
             }
         } while (point>0);
     }
@@ -163,7 +175,7 @@ public class Wizard extends Character{
     }
     @Override
     public void attack(Character character, int power) { //Add effect def of mob, boost of player
-        int hpLost=(int)((power+this.attack)*this.house.getMultDeg()-character.getDefense());
+        int hpLost=(int)((power+this.attack)*this.house.getMultDeg()-(character.getDefense()+character.asDefend()));
         System.out.println(character.getName()+" has lost "+hpLost+" HP");
         character.setHp(character.getHp()-hpLost);
     }

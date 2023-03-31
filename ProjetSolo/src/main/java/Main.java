@@ -7,8 +7,11 @@ public class Main {
         game.startGame();
 
         // A faire
-        // Boos = sorcier donc sort et potion à changer
+        // Boss = sorcier donc sort et potion à changer
         // ajouter les items
         // Faire les cas spéciaux de niveaux
+        // Voir pour mettre les dialogue dans une enum ou class
+        // Equilibrer les mobs
+        // Faire en sorte de choisir les action chaque année, dormir regen, craft, shop, trouver ingre, apprendre sort
     }
 }

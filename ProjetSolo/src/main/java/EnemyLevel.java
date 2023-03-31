@@ -42,7 +42,15 @@ public class EnemyLevel {
     }
     public void mobTurn(Wizard player) {   // Add effect Defense of player in consideration
         for (int i = 0; i <= this.bossEnemy.size() - 1; i++) {
-            this.bossEnemy.get(i).enemyTurn(player);
+            if(!this.bossEnemy.get(i).isRestrainOrSleep())
+                this.bossEnemy.get(i).enemyTurn(player);
+            else
+                System.out.println(this.bossEnemy.get(i).getName()+" is unable to attack");
+        }
+    }
+    public void decreaseTimeEffectsMob(){
+        for (AbstractEnemy i:bossEnemy) {
+            i.decreaseTimeEffects();
         }
     }
 }
