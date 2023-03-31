@@ -4,6 +4,8 @@ public class Game {
     private Wizard player;
     private ArrayList<Potion> potions=new ArrayList<>();
     private ArrayList<Spell> spells=new ArrayList<>();
+    private ArrayList<Spell> Learningspells=new ArrayList<>();
+    private ArrayList<Spell> items=new ArrayList<>();
     private ArrayList<ForbiddenSpell> forbiddenSpells=new ArrayList<>();
     private ArrayList<Boss> bosses=new ArrayList<>();
     private ArrayList<Enemy> enemies=new ArrayList<>();
@@ -99,7 +101,7 @@ public class Game {
                     potionUse(this.player.choosePotion(), target);
                     break;
                 case 3:
-                    //this.player.chooseItem();
+                    itemUse(this.player.chooseItem(),target);
                     break;
             }
             //Verification of special condition
@@ -117,6 +119,9 @@ public class Game {
             return true;
         }
         return false;
+    }
+    public void chooseAction(){
+
     }
     public void spellUse(Spell choosenSpell, Character targetMob){
         if(Math.random()*100>=this.player.getPrecision()*this.player.getHouse().getMultPres()*this.player.asEffect(Type.BOOSTPRES))
@@ -157,6 +162,9 @@ public class Game {
                     break;
             }
         }
+    }
+    public void itemUse(Item item, Character character){
+
     }
     //=================================================================================================================
     //  Course of the years

@@ -7,6 +7,7 @@ public class Wizard extends Character{
     private House house;
     private ArrayList<Spell> knowspell;
     private Potion[] potion;
+    private Item[] item;
     private int year;
 
     public Wizard(String name, int attack, int defense, int health, int precision, Pet pet) {
@@ -14,6 +15,7 @@ public class Wizard extends Character{
         Wand wand=new Wand();
         System.out.println(wand.toString());
         Potion pot=new Potion("empty","",0,new Effect(Type.NONE,0F,0));
+        Item item=new Item("empty", "empty");
         House house=initHouse();
         System.out.println(house.toString());
         this.pet = pet;
@@ -21,6 +23,7 @@ public class Wizard extends Character{
         this.house = house;
         this.knowspell = new ArrayList<Spell>();
         this.potion = new Potion[]{pot,pot,pot,pot,pot,pot,pot,pot,pot,pot};
+        this.item = new Item[]{item,item,item,item,item,item,item,item,item,item};
         this.year = 1;
     }
     public void changeHP(int i){
@@ -66,7 +69,13 @@ public class Wizard extends Character{
     public void printInventoryPotion(){
         System.out.println("This is the potions you currently have in your inventory : ");
         for(int iz=0;iz<=this.potion.length-1;iz++) {
-            System.out.println(iz+" : "+potion[iz].getName());
+            System.out.println(iz+" : "+potion[iz].toString());
+        }
+    }
+    public void printInventoryItem(){
+        System.out.println("This is the items you currently have in your inventory : ");
+        for(int iz=0;iz<=this.item.length-1;iz++) {
+            System.out.println(iz+" : "+item[iz].toString());
         }
     }
     public void printKnowSpells(){
@@ -123,6 +132,18 @@ public class Wizard extends Character{
         } while (index <0||index>=this.potion.length-1||this.potion[index].getType()==Type.NONE);
         Potion choice =this.potion[index];
         this.potion[index]=new Potion("empty","",0,new Effect(Type.NONE,0F,0));
+        return choice;
+    }
+    public Item chooseItem(){
+        printInventoryItem();
+        int index;
+        Scanner scanner = new Scanner(System.in);
+        do {
+            System.out.println("Enter the number of the item, you want to use");
+            index = scanner.nextInt();
+        } while (index <0||index>=this.item.length-1||this.item[index].getName()=="empty");
+        Item choice =this.item[index];
+        this.item[index]=new Item("empty","empty");
         return choice;
     }
     public void chooseAddStat(int point){
