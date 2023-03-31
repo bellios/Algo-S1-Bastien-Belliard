@@ -39,7 +39,10 @@ public class Wizard extends Character{
     public void impYear() {
         this.year +=1;
     }
-
+    @Override
+    public int getDefense() {
+        return (int) (defense*house.getMultDef());
+    }
     //=================================================================================================================
     //  Initialization
     //=================================================================================================================
@@ -175,13 +178,16 @@ public class Wizard extends Character{
     }
     @Override
     public void attack(Character character, int power) { //Add effect def of mob, boost of player
-        int hpLost=(int)((power+this.attack)*this.house.getMultDeg()-(character.getDefense()+character.asDefend()));
+        int hpLost=(int)((power+this.attack*asEffect(Type.BOOSTSTR))*this.house.getMultDeg()-(character.getDefense()+character.asEffect(Type.DEFENSE)));
         System.out.println(character.getName()+" has lost "+hpLost+" HP");
         character.setHp(character.getHp()-hpLost);
     }
 
     public void heal (int i){
-        this.hp+=i;
+        if(this.hp+i<=maxHP)
+            this.hp+=i;
+        else
+            this.hp=this.maxHP;
     }
 
 }

@@ -33,9 +33,7 @@ public abstract class Character {
         return hp;
     }
 
-    public int getDefense() {
-        return defense;
-    }
+    public abstract int getDefense();
 
     public String getName() {
         return name;
@@ -58,14 +56,18 @@ public abstract class Character {
     //  Effect method
     //=================================================================================================================
     public void decreaseTimeEffects(){
-        for(Effect i: effect) {
-            i.decreaseTime();
-            if(i.getType()==Type.BLEEDING||i.getType()==Type.POISON) {
-                this.hp -= i.getPower();
-                System.out.println(this.name+" has taken"+i.getPower()+" damage from "+i.getType());
+        try {
+            for (Effect i : effect) {
+                i.decreaseTime();
+                if (i.getType() == Type.BLEEDING || i.getType() == Type.POISON) {
+                    this.hp -= i.getPower();
+                    System.out.println(this.name + " has taken" + i.getPower() + " damage from " + i.getType());
+                }
+                if (i.getTurn() <= 0)
+                    effect.remove(i);
             }
-            if (i.getTurn()<=0)
-                effect.remove(i);
+        }catch (Exception e){
+            System.out.println(e.toString());
         }
     }
     public boolean isEffect(Type type){
@@ -88,10 +90,14 @@ public abstract class Character {
             return true;
         return false;
     }
-    public float asDefend(){
-        if(isEffect(Type.DEFENSE))
-            return getEffect(Type.DEFENSE).getPower();
-        return 0;
+    public float asEffect(Type type){
+        if(isEffect(type))
+            return getEffect(type).getPower();
+        return 1;
     }
+    public void clearEffect(){
+        this.effect=new ArrayList<>();
+    }
+
 
 }

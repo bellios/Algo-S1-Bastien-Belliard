@@ -19,7 +19,6 @@ public class EnemyLevel {
         for(int i=0;i<=bossEnemy.size()-1;i++) {
             if (bossEnemy.get(i).getHp() <= 0) {
                 this.bossEnemy.remove(bossEnemy.get(i));
-                System.out.println("test");
             }else
                 return false;
         }
