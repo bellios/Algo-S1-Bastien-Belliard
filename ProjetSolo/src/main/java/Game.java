@@ -102,22 +102,25 @@ public class Game {
         do{
             Scanner scanner = new Scanner(System.in);
             int index;
+            boolean test=false;
             do {
-                System.out.println("Choose your moove:\n1 : Spell\n2 : Potion\n3 : Item");
-                index = scanner.nextInt();
-            } while (index <1||index>3);
-            Character target = mylevel.chooseMob();
-            switch(index){
-                case 1:
-                    spellUse(this.player.chooseSpell(), target);
-                    break;
-                case 2:
-                    potionUse(this.player.choosePotion(), target);
-                    break;
-                case 3:
-                    itemUse(this.player.chooseItem(),target);
-                    break;
-            }
+                do {
+                    System.out.println("Choose your moove:\n1 : Spell\n2 : Potion\n3 : Item");
+                    index = scanner.nextInt();
+                } while (index <1||index>3);
+
+                switch (index) {
+                    case 1:
+                        test=spellUse(this.player.chooseSpell(), mylevel.chooseMob());
+                        break;
+                    case 2:
+                        test=potionUse(this.player.choosePotion(), mylevel.chooseMob());
+                        break;
+                    case 3:
+                        test=itemUse(this.player.chooseItem(), mylevel.chooseMob());
+                        break;
+                }
+            }while(!test);
             //Verification of special condition
             if(!mylevel.areDead()){
                 mylevel.mobTurn(this.player);
@@ -137,48 +140,52 @@ public class Game {
     public void chooseAction(){
 
     }
-    public void spellUse(Spell choosenSpell, Character targetMob){
+    public boolean spellUse(Spell choosenSpell, Character targetMob){
+        if (choosenSpell.getName()=="exit")
+            return false;
         if(Math.random()*100>=this.player.getPrecision()*this.player.getHouse().getMultPres()*this.player.asEffect(Type.BOOSTPRES))
             System.out.println("AH AH, you miss your spell");
         else {
             switch (choosenSpell.getType()) {
                 case ATTACK:
                     player.attack(targetMob, choosenSpell.getPower());
-                    break;
+                    return true;
                 case DEFENSE:
                     player.effect.add(new Effect(choosenSpell.getType(), (float) choosenSpell.getPower(), 1));
-                    break;
+                    return true;
                 case RESTRAIN:
                     targetMob.effect.add(new Effect(choosenSpell.getType(), 0F , choosenSpell.getPower()));
-                    break;
+                    return true;
                 case BLEEDING,FIRE,FREEZE:
                     targetMob.effect.add(new Effect(choosenSpell.getType(), (float) choosenSpell.getPower() , choosenSpell.getPower()));
-                    break;
+                    return true;
                 case SPECIAL:
                     player.specialSpell(targetMob, choosenSpell);
-                    break;
+                    return true;
             }
         }
+        return false;
     }
-    public void potionUse(Potion choosenPotion,Character targetMob){
+    public boolean potionUse(Potion choosenPotion,Character targetMob){
         if(Math.random()*100>=this.player.getPrecision()*this.player.getHouse().getMultPres()*this.player.asEffect(Type.BOOSTPRES)+10)
             System.out.println("AH AH, you miss your potion");
         else {
             switch (choosenPotion.getType()) {
                 case BOOSTSTR,BOOSTPRES, RESTRAIN, POISON, SLEEP:
                     targetMob.effect.add(new Effect(choosenPotion.getEffect()));
-                    break;
+                    return true;
                 case REGENERATE:
                     this.player.heal((int)(this.player.getMaxHP()*choosenPotion.getEffect().getPower()*this.player.getHouse().getMultPot())-this.player.getMaxHP());
-                    break;
+                    return true;
                 case CURE:
                     this.player.effect.clear();
-                    break;
+                    return true;
             }
         }
+        return false;
     }
-    public void itemUse(Item item, Character character){
-
+    public boolean itemUse(Item item, Character character){
+        return false;
     }
     //=================================================================================================================
     //  Course of the years

@@ -134,22 +134,29 @@ public class Wizard extends Character{
     //=================================================================================================================
     public Spell chooseSpell(){
         printKnowSpells();
+        System.out.println(knowspell.size()+" : exit");
         int index;
         Scanner scanner = new Scanner(System.in);
         do {
             System.out.println("Enter the number of the spell, you want to use");
             index = scanner.nextInt();
-        } while (index <0||index>=this.knowspell.size()-1);
+        } while (index <0||index>this.knowspell.size());
+        if(index== knowspell.size())
+            return new Spell("exit","exit",Type.NONE,0,0);
         return this.knowspell.get(index);
     }
     public Potion choosePotion(){
         printInventoryPotion();
+        System.out.println("10 : exit");
         int index;
         Scanner scanner = new Scanner(System.in);
         do {
             System.out.println("Enter the number of the potion, you want to use");
             index = scanner.nextInt();
-        } while (index <0||index>=this.potion.length-1||this.potion[index].getType()==Type.NONE);
+            if(index== potion.length)
+                return new Potion("exit","exit",0,new Effect(Type.NONE,0F,0));
+        } while (index <0||index>=this.potion.length||this.potion[index].getType()==Type.NONE);
+
         Potion choice =this.potion[index];
         this.potion[index]=new Potion("empty","",0,new Effect(Type.NONE,0F,0));
         return choice;

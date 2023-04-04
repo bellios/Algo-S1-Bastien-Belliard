@@ -12,8 +12,7 @@ public class Main {
         // Faire les cas spéciaux de niveaux
         // Voir pour mettre les dialogue dans une enum ou class
         // Equilibrer les mobs
-        // finir choisir les action chaque année, shop, trouver ingre, apprendre sort
-        // pouvoir revenir en arrière en combat
+        // finir choisir les action chaque année, shop, trouver ingre
         // random level
     }
 }
