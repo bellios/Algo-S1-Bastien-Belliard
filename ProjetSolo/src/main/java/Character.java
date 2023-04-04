@@ -59,7 +59,7 @@ public abstract class Character {
         try {
             for (Effect i : effect) {
                 i.decreaseTime();
-                if (i.getType() == Type.BLEEDING || i.getType() == Type.POISON) {
+                if (i.getType() == Type.BLEEDING || i.getType() == Type.POISON || i.getType() == Type.FIRE|| i.getType() ==Type.FREEZE) {
                     this.hp -= i.getPower();
                     System.out.println(this.name + " has taken" + i.getPower() + " damage from " + i.getType());
                 }
@@ -86,7 +86,7 @@ public abstract class Character {
     }
 
     public boolean isRestrainOrSleep(){
-        if (isEffect(Type.SLEEP)||(isEffect(Type.RESTRAIN)&&Math.random()*10<getEffect(Type.RESTRAIN).getPower()))
+        if (isEffect(Type.SLEEP)||(isEffect(Type.RESTRAIN)&&Math.random()*10<getEffect(Type.RESTRAIN).getPower())||(isEffect(Type.FREEZE)&&Math.random()*10<getEffect(Type.FREEZE).getPower()))
             return true;
         return false;
     }

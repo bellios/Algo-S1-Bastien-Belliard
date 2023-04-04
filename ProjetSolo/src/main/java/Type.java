@@ -10,5 +10,7 @@ public enum Type {
     REGENERATE, //One
     BLEEDING, // Statue rnd
     SPECIAL, //WIP
+    FREEZE,
+    FIRE,
     NONE
 }

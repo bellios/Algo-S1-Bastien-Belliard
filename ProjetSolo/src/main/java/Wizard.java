@@ -93,18 +93,38 @@ public class Wizard extends Character{
                     if(potions.get(i).getYearOfCraft()>this.year) break;
                     System.out.println(i+" : "+potions.get(i).toString());
                 }
+                System.out.println(potions.size()+" : Exit");
                 int indexPot;
                 Scanner scanner = new Scanner(System.in);
                 do {
                     System.out.println("Enter the number of the potion, you want to craft");
                     indexPot = scanner.nextInt();
-                } while (indexPot <0||indexPot>=potions.size());
+                } while (indexPot <0||indexPot>potions.size());
+                if(indexPot==potions.size())
+                    return false;
                 this.potion[iz]=potions.get(indexPot);
                 return true;
             }
         }
         System.out.println("Inventory full");
         return false;
+    }
+    public boolean learnSpell(ArrayList<Spell> spells) {
+        for(int i=0;i<=spells.size()-1;i++){
+            if(spells.get(i).getYearOfStudy()>this.year) break;
+            System.out.println(i+" : "+spells.get(i).toString());
+        }
+        System.out.println(spells.size()+" : Exit");
+        int index;
+        Scanner scanner = new Scanner(System.in);
+        do {
+            System.out.println("Enter the number of the potion, you want to craft");
+            index = scanner.nextInt();
+        } while (index <0||index>spells.size());
+        if(index==spells.size())
+            return false;
+        this.knowspell.add(spells.get(index));
+        return true;
     }
     public void addSpell(Spell spell){
         this.knowspell.add(spell);

@@ -4,9 +4,9 @@ public class Game {
     private Wizard player;
     private ArrayList<Potion> potions=new ArrayList<>();
     private ArrayList<Spell> spells=new ArrayList<>();
-    private ArrayList<Spell> Learningspells=new ArrayList<>();
-    private ArrayList<Spell> items=new ArrayList<>();
+    private ArrayList<Spell> learningSpells=new ArrayList<>();
     private ArrayList<ForbiddenSpell> forbiddenSpells=new ArrayList<>();
+    private ArrayList<Item> items=new ArrayList<>();
     private ArrayList<Boss> bosses=new ArrayList<>();
     private ArrayList<Enemy> enemies=new ArrayList<>();
     private ArrayList<EnemyLevel> levels=new ArrayList<>();
@@ -57,6 +57,20 @@ public class Game {
         this.forbiddenSpells.add(new ForbiddenSpell("Imperio","Take over mind.",Type.SPECIAL,1));
         this.forbiddenSpells.add(new ForbiddenSpell("Curcio","Torture.",Type.RESTRAIN, 100));
         this.forbiddenSpells.add(new ForbiddenSpell("Avada Kevadra","Kill.",Type.ATTACK,1000));
+    }
+    public void initLearningSpell(){
+        this.learningSpells.add(new Spell("Aquamenti","Produce a jet of water",Type.ATTACK,20,1));
+        this.learningSpells.add(new Spell("Bombarda","Produce a small explosion",Type.ATTACK,35,2));
+        this.learningSpells.add(new Spell("Incendio","Produce fire",Type.FIRE,4,3));
+        this.learningSpells.add(new Spell("Confringo","Produce a medium explosion",Type.ATTACK,50,3));
+        this.learningSpells.add(new Spell("Bombarda Maxima","Produce a big explosion",Type.ATTACK,65,4));
+        this.learningSpells.add(new Spell("Petrificus Totalus","Petrify your enemy",Type.RESTRAIN,7,6));
+        this.learningSpells.add(new Spell("Glacius","Freeze your enemy",Type.FREEZE,20,6));
+    }
+    public void initItem(){
+        this.items.add(new Item("Legendary sword","Legendary sword of Godric Gryffindor"));
+        this.items.add(new Item("Basilic teeth","Teeth of the basilic"));
+        this.items.add(new Item("Fire work","Do i need to explain that ?"));
     }
     public void initBoss(){
         this.bosses.add(new Boss("Basilic",60,10,10,50));
@@ -137,7 +151,7 @@ public class Game {
                 case RESTRAIN:
                     targetMob.effect.add(new Effect(choosenSpell.getType(), 0F , choosenSpell.getPower()));
                     break;
-                case BLEEDING:
+                case BLEEDING,FIRE,FREEZE:
                     targetMob.effect.add(new Effect(choosenSpell.getType(), (float) choosenSpell.getPower() , choosenSpell.getPower()));
                     break;
                 case SPECIAL:
@@ -185,14 +199,14 @@ public class Game {
     public void menuOfActions(int action){
         do {
             System.out.println("\nActions : \n1 : Print know spell \n2 : Print potion inventory \n3 : Print item inventory");
-            System.out.println("4 : Go to sleep in dormitory (1pt)\n5 : Craft potion (1pt)\n6 : learn new spell (1pt) WIP");
+            System.out.println("4 : Go to sleep in dormitory (1pt)\n5 : Craft potion (1pt)\n6 : learn new spell (1pt)");
             System.out.println("7 : Shop (1pt) WIP\n8 : Go gather ingredient (1pt) WIP");
             int index;
             Scanner scanner = new Scanner(System.in);
             do {
                 System.out.println("Enter the number of the action you want to make");
                 index = scanner.nextInt();
-            } while (index <1||index>6);
+            } while (index <1||index>8);
             switch (index){
                 case 1:
                     this.player.printKnowSpells();
@@ -209,11 +223,14 @@ public class Game {
                     action--;
                     break;
                 case 5:
-                    this.player.craftPotion(potions);
-                    action--;
+                    if(this.player.craftPotion(potions))
+                        action--;
                     break;
-                case 6,7,8:
-                    //this.player.learnSpell(Learningspells);
+                case 6:
+                    if(this.player.learnSpell(learningSpells))
+                        action --;
+                    break;
+                case 7,8:
                     //this.player.shop(items);
                     //this.player.gatherIngredient(ingredients);
                     System.out.println("WIP, currently not available");
@@ -226,10 +243,6 @@ public class Game {
         addSpellPerYear();
         player.printKnowSpells();
         System.out.println("\n In this year your will have "+action+" point");
-        /*for(int i=0;i<potion;i++){
-            player.craftPotion(potions);
-        }
-        player.printInventoryPotion();*/
         menuOfActions(action);
         this.player.impYear();
         return battle();
@@ -244,6 +257,8 @@ public class Game {
         initPotion();
         initSpell();
         initForbiddenSpell();
+        initLearningSpell();
+        initItem();
         initBoss();
         initEnemy();
         initLevel();
