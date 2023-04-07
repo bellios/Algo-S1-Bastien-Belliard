@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="063cbdba-14b0-4ab4-af84-7038f4e3a2c1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../ProjetSolo/src/main/java/chara/Character.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ProjetSolo/src/main/java/chara/Effect.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ProjetSolo/src/main/java/chara/Potion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ProjetSolo/src/main/java/chara/Type.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ProjetSolo/src/main/java/chara/enemies/AbstractEnemy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ProjetSolo/src/main/java/chara/enemies/Boss.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ProjetSolo/src/main/java/chara/enemies/Enemy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ProjetSolo/src/main/java/chara/enemies/EnemyLevel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ProjetSolo/src/main/java/chara/spell/AbstractSpell.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ProjetSolo/src/main/java/chara/spell/ForbiddenSpell.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ProjetSolo/src/main/java/chara/spell/Spell.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ProjetSolo/src/main/java/chara/wizard/House.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ProjetSolo/src/main/java/chara/wizard/Item.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ProjetSolo/src/main/java/chara/wizard/Pet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ProjetSolo/src/main/java/chara/wizard/Wizard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ProjetSolo/src/main/java/chara/wizard/wand/Core.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ProjetSolo/src/main/java/chara/wizard/wand/Wand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ProjetSolo/src/main/java/chara/wizard/wand/Wood.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/src/main/java/AbstractEnemy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/src/main/java/AbstractSpell.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/src/main/java/Boss.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/src/main/java/Character.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/src/main/java/Core.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/src/main/java/Effect.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/src/main/java/Enemy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/src/main/java/EnemyLevel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/src/main/java/ForbiddenSpell.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/src/main/java/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ProjetSolo/src/main/java/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/src/main/java/House.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/src/main/java/Item.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ProjetSolo/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/src/main/java/Pet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/src/main/java/Potion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/src/main/java/Spell.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/src/main/java/Type.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/src/main/java/Wand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/src/main/java/Wizard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/src/main/java/Wood.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/target/classes/AbstractEnemy.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/target/classes/AbstractSpell.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/target/classes/Boss.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/target/classes/Character.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/target/classes/Core.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/target/classes/Effect.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/target/classes/Enemy.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/target/classes/EnemyLevel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/target/classes/ForbiddenSpell.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/target/classes/Game$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../ProjetSolo/target/classes/Game$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/target/classes/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/../ProjetSolo/target/classes/Game.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/target/classes/House.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/target/classes/Item.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../ProjetSolo/target/classes/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/target/classes/Pet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/target/classes/Potion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/target/classes/Spell.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/target/classes/Type.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/target/classes/Wand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/target/classes/Wizard.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjetSolo/target/classes/Wood.class" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="workspaceImportEnabled" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2O6LkxQwT1dIgTJRYR0CqFAWuo2" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/Pepito/IdeaProjects/ProjetSoloFx",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="063cbdba-14b0-4ab4-af84-7038f4e3a2c1" name="Changes" comment="" />
+      <created>1680876233851</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1680876233851</updated>
+    </task>
+    <servers />
+  </component>
+</project>

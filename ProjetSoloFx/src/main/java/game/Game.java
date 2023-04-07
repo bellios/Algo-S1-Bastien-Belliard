@@ -1,3 +1,5 @@
+package game;
+
 import chara.Character;
 import chara.Effect;
 import chara.Potion;
@@ -257,7 +259,7 @@ public class Game {
         return battle();
     }
     //=================================================================================================================
-    //  Main
+    //  game.Main
     //=================================================================================================================
     public void startGame(){
         // Initialization
