@@ -14,8 +14,6 @@ import chara.wizard.Wizard;
 
 import java.util.*;
 
-
-
 public class Game {
     private Wizard player;
     private ArrayList<Potion> potions=new ArrayList<>();
