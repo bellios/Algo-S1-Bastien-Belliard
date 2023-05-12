@@ -33,10 +33,7 @@ public class Wand {
 
     @Override
     public String toString() {
-        return "Your Wand : " +
-                "\ncore : " + core +
-                "\nwood : " + wood +
-                "\nsize : " + size +" cm"+
-                "\nflexibility (10=flexible, 0=rigid) : " + flexibility;
+        return "core : " + core + " | wood : " + wood +
+                "\nsize : " + size +" cm | flexibility : " + flexibility;
     }
 }

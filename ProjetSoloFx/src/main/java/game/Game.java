@@ -10,6 +10,7 @@ import chara.enemies.EnemyLevel;
 import chara.spell.ForbiddenSpell;
 import chara.spell.Spell;
 import chara.wizard.Item;
+import chara.wizard.Pet;
 import chara.wizard.Wizard;
 
 import java.util.*;
@@ -32,6 +33,9 @@ public class Game {
         Scanner scanner = new Scanner(System.in);
         String name= scanner.nextLine();
         this.player= new Wizard(name);
+    }
+    public void initFxPlayer (String name, Pet pet) {
+        this.player= new Wizard(name, pet);
     }
     public void initPotion(){
         this.potions.add(new Potion("Cure for Boils","Regenerate a little of your health",1,new Effect(Type.REGENERATE,1.25F,0)));
@@ -138,9 +142,7 @@ public class Game {
         }
         return false;
     }
-    public void chooseAction(){
 
-    }
     public boolean spellUse(Spell choosenSpell, Character targetMob){
         if (choosenSpell.getName()=="exit")
             return false;
@@ -280,5 +282,52 @@ public class Game {
             }
         }
 
+    }
+
+    public Game() {
+        initPotion();
+        initSpell();
+        initForbiddenSpell();
+        initLearningSpell();
+        initItem();
+        initBoss();
+        initEnemy();
+        initLevel();
+    }
+
+    public Wizard getPlayer() {
+        return player;
+    }
+
+    public ArrayList<Potion> getPotions() {
+        return potions;
+    }
+
+    public ArrayList<Spell> getSpells() {
+        return spells;
+    }
+
+    public ArrayList<Spell> getLearningSpells() {
+        return learningSpells;
+    }
+
+    public ArrayList<ForbiddenSpell> getForbiddenSpells() {
+        return forbiddenSpells;
+    }
+
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
+    public ArrayList<Boss> getBosses() {
+        return bosses;
+    }
+
+    public ArrayList<Enemy> getEnemies() {
+        return enemies;
+    }
+
+    public ArrayList<EnemyLevel> getLevels() {
+        return levels;
     }
 }

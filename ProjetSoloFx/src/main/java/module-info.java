@@ -5,4 +5,6 @@ module com.example.projetsolofx {
                             
     opens com.example.projetsolofx to javafx.fxml;
     exports com.example.projetsolofx;
+    exports game;
+    opens game to javafx.fxml;
 }

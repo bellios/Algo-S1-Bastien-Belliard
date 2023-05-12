@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.collections.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.collections.FXCollections?>
 
-<VBox alignment="CENTER" prefHeight="400.0" prefWidth="400.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetsolofx.PersoCreaCrontroller">
+<VBox alignment="CENTER" prefHeight="400.0" prefWidth="400.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetsolofx.PersoCreaController">
 <padding>
-    <Insets top="10" right="25" bottom="10" left="25"/>
+    <Insets bottom="10" left="25" right="25" top="10" />
 </padding>
 
 <GridPane alignment="CENTER">
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="100"/>
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="200"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="100" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="200" />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints minHeight="10" prefHeight="30" vgrow="SOMETIMES"/>
-        <RowConstraints minHeight="10" prefHeight="30" vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10" prefHeight="30" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10" prefHeight="30" vgrow="SOMETIMES" />
     </rowConstraints>
 
-    <Label text="Name :" GridPane.rowIndex="0"/>
-    <TextField fx:id="fieldName" promptText="Enter yoru name" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+    <Label text="Name :" />
+    <TextField fx:id="fieldName" promptText="Enter yoru name" GridPane.columnIndex="1" />
 
-    <Label text=" Pet:" GridPane.rowIndex="1"/>
+    <Label text=" Pet :" GridPane.rowIndex="1" />
     <ComboBox fx:id="animalListe" prefWidth="150" GridPane.columnIndex="1" GridPane.rowIndex="1">
         <items>
             <FXCollections fx:factory="observableArrayList">
@@ -32,5 +32,5 @@
     </ComboBox>
 </GridPane>
 
-<Button fx:id="createButton" text="Create" onAction="#onCreateClick"/>
+<Button fx:id="createButton" onAction="#onCreateClick" text="Create" />
 </VBox>

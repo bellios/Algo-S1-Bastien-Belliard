@@ -45,6 +45,18 @@ public class Wizard extends Character {
         this.item = new Item[]{item,item,item,item,item,item,item,item,item,item};
         this.year = 1;
     }
+    public Wizard(String name, Pet pet){
+        super(name, 10, 10, 100, 70);
+        this.pet = pet;
+        Potion pot=new Potion("empty","",0,new Effect(Type.NONE,0F,0));
+        Item item=new Item("empty", "empty");
+        this.wand = new Wand();
+        this.house = initHouse();
+        this.knowspell = new ArrayList<>();
+        this.potion = new Potion[]{pot,pot,pot,pot,pot,pot,pot,pot,pot,pot};
+        this.item = new Item[]{item,item,item,item,item,item,item,item,item,item};
+        this.year = 1;
+    }
     public Wizard(String name, int attack, int defense, int health, int precision, Pet pet) {
         super(name, attack, defense, health, precision);
         Wand wand=new Wand();
@@ -273,4 +285,11 @@ public class Wizard extends Character {
             this.hp=this.maxHP;
     }
 
+    public Pet getPet() {
+        return this.pet;
+    }
+
+    public Object getWand() {
+        return this.wand;
+    }
 }
